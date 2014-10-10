@@ -1,0 +1,48 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.3.4/tabletop.min.js"></script>
+		<script type="text/javascript" src='js/sheetsee.js'></script>
+		<link rel="stylesheet" type="text/css" href="css/sss.css">
+	</head>
+	<body>
+	<input id="fullTableFilter" type="text" placeholder="filter by.."></input>
+	<div id="placeholder"></div>
+
+	<script id="placeholder" type="text/html">
+		<table>
+			<tr><th class="tHeader">Pattern name</th><th class="tHeader">Instructions</th><th class="tHeader">Screenshot#1</th></tr>
+				{{#rows}}
+					<tr><td>{{patternname}}</td><td>{{instructions}}</td><td><img width="300px" src="{{screenshot1}}"></td></tr>
+				{{/rows}}
+		</table>
+	</script>
+
+	<script type="text/javascript">
+		document.addEventListener('DOMContentLoaded', function() {
+				var URL = "1R9uPlOR__theMOKkGnoRLbVFGG_3MsI4RNc4CWsm2iA"
+				Tabletop.init( { key: URL, callback: myData, simpleSheet: true } )
+		})
+		function myData(data) {
+				//All the sheetsee things you want to do!
+				console.log(data);
+				var tableOptions = {"data": data, "pagination": 10, "tableDiv": "#placeholder", "filterDiv": "#fullTableFilter"}
+				Sheetsee.makeTable(tableOptions)
+				Sheetsee.initiateTableFilter(tableOptions)
+
+				// var california = Sheetsee.getKeyword(data, "california")
+				// var calOptions = { "data": california,
+				// 									 "pagination": 5,
+				// 									 "tableDiv": "#calTable",
+				// 									 "filterDiv": "#calFilter"
+				// 								 }
+				// Sheetsee.makeTable(calOptions)
+				// Sheetsee.initiateTableFilter(calOptions)
+
+				// var html = Sheetsee.ich.photogrid({'rows': data})
+				// $('#photogrid').html(html)
+		}
+	</script>
+	</body>
+</html>
